@@ -1,0 +1,12 @@
+.Applist-wrapper {
+  margin: 60px;
+}
+
+.Applist-header {
+  height: 70px;
+}
+
+.Applist-content {
+  height: 320px;
+  overflow: scroll;
+}
