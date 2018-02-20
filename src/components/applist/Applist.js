@@ -7,7 +7,6 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import Divider from 'material-ui/Divider';
 import Icon from 'material-ui/Icon';
-// import FileDownload from 'material-ui-icon/FileDownload';
 import Save from 'material-ui-icons/Save';
 import FileDownload from 'material-ui-icons/FileDownload';
 import './Applist.css';
@@ -44,13 +43,28 @@ class Applist extends React.Component {
     constructor(props) {
         super(props)
         this.classes = styles
+        this.applist = [];
+    }
+
+    componentDidMount() {
+        const url = 'https://app.pagewerkz.com/api/downloadpage?lang=en';
+        fetch(url, {
+                method: 'GET',
+                headers: new Headers({'api_key': 'f41530bce9a451c928a61af28a0bfd05', 'Content-Type': 'application/json'})
+            })
+            .then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(response => {
+                console.log('Success:', response)
+                this.applist = response;
+            });
     }
 
     render() {
         return (
             <div className="Applist-wrapper">
                 <Grid container spacing={16} alignItems="center">
-                    <Grid className="Applist-card" item xs={6} sm={6} md={3} lg={3}>
+                    <Grid className="Applist-card" item xs={12} sm={6} md={3} lg={3}>
                         <Card className={this.classes.card}>
                             <CardHeader
                                 className="Applist-header"
@@ -61,6 +75,18 @@ class Applist extends React.Component {
                                 <Typography component="p">
                                     <p>
                                         <strong>Minimum System Requirements for Window</strong>
+                                    </p>
+                                    <p>- Intel Pentium Class Core 2 duo 3rd gen and above. AMD Bulldozer Core
+                                        Microprocessor and above
+                                    </p>
+                                    <p>- Windows 7 or later. 32bit or 64 bit(older OS versions may work but are not
+                                        officially supported)
+                                    </p>
+                                    <p>- Minimum 100 MB available disk space (for installation only)
+                                    </p>
+                                    <p>- Minimum resolution 1024 by 768</p>
+                                    <p>
+                                        <strong>Change Logs</strong>
                                     </p>
                                     <p>- Intel Pentium Class Core 2 duo 3rd gen and above. AMD Bulldozer Core
                                         Microprocessor and above
@@ -84,7 +110,7 @@ class Applist extends React.Component {
                             </CardActions>
                         </Card>
                     </Grid>
-                    <Grid className="Applist-card" item xs={6} sm={6} md={3} lg={3}>
+                    <Grid className="Applist-card" item xs={12} sm={6} md={3} lg={3}>
                         <Card className={this.classes.card}>
                             <CardHeader
                                 className="Applist-header"
@@ -115,11 +141,11 @@ class Applist extends React.Component {
                             </CardActions>
                         </Card>
                     </Grid>
-                    <Grid className="Applist-card" item xs={6} sm={6} md={3} lg={3}>
+                    <Grid className="Applist-card" item xs={12} sm={6} md={3} lg={3}>
                         <Card className={this.classes.card}>
                             <CardHeader className="Applist-header" title="Get ANAVO for OSX" subheader=""/>
                             <Divider/>
-                            <CardContent className="Applist-content">
+                            < CardContent className="Applist-content">
                                 <Typography component="p">
                                     <p>
                                         <strong>Minimum System Requirements for Window</strong>
@@ -143,7 +169,7 @@ class Applist extends React.Component {
                             </CardActions>
                         </Card>
                     </Grid>
-                    <Grid className="Applist-card" item xs={6} sm={6} md={3} lg={3}>
+                    <Grid className="Applist-card" item xs={12} sm={6} md={3} lg={3}>
                         <Card className={this.classes.card}>
                             <CardHeader className="Applist-header" title="Get ANAVO for iPad" subheader=""/>
                             <Divider/>
@@ -173,7 +199,7 @@ class Applist extends React.Component {
                     </Grid>
                 </Grid>
             </div>
-        );
+        )
     }
 }
 
