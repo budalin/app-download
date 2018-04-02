@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {render} from 'react-dom';
 import Header from './components/header/Header';
 import Applist from './components/applist/Applist';
 import './App.css';
